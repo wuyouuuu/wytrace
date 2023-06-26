@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.library'
+    id 'maven-publish'
 }
 
 android {
@@ -47,6 +48,29 @@ android {
         prefab true
     }
 }
+
+publishing {
+    publications {
+        aar(MavenPublication) {
+            groupId 'com.wy.lib'
+            artifactId 'wytrace'
+            version '1.0.0'
+            // 打包 aar 文件
+            artifact("$buildDir/outputs/aar/wytrace-release.aar")
+        }
+    }
+//    repositories {
+//        maven {
+//            // 配置 Maven 仓库信息
+//            url mavenRepositoryUrl
+//            credentials {
+//                username mavenRepositoryUsername
+//                password mavenRepositoryPassword
+//            }
+//        }
+//    }
+}
+
 
 dependencies {
     api 'com.bytedance.android:shadowhook:1.0.7'
