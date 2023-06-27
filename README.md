@@ -16,7 +16,7 @@
 
 ```
 ### wytrace
-这个库就是解决上面的烦锁问题
+这个库就是解决上面的繁琐问题
 支持环境
 Android 9 ～ Android 12 debug包
 
