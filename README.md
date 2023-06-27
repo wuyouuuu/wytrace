@@ -19,6 +19,31 @@
 这个库就是解决上面的烦锁问题
 支持环境
 Android 9 ～ Android 12 debug包
+
+```groovy
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+```groovy
+
+android {
+    buildFeatures {
+        prefab true
+    }
+}
+
+dependencies {
+    implementation 'com.bytedance.android:shadowhook:1.0.7'
+    implementation 'com.github.wuyouuuu:wytrace:1.0.0'
+}
+```
+
+
 ```java
 /**
  *
