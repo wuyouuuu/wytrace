@@ -1,0 +1,1 @@
+-keep class com.wy.lib.wytrace.ArtMethodTrace{*;}
