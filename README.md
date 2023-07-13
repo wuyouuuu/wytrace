@@ -2,8 +2,8 @@
 起初这是一个android 平台排查方法耗时的库
 后面我用他来代替systrace使用了。
 支持环境
-Android 9 ～ Android 12 debug包
-Android 13已经默认切到Nterp了，13后需要切到switch解释执行才能监控到.
+Android 9 ～ Android 14 debug包
+Android 13已经默认切到Nterp了，13后需要切到switch解释执行才能监控到. 这边利用jvmti切换。
 
 ### 背景
 排查一个方法耗时时，经常需要在内部打印各种时间戳,比如排查下面onCreate方法耗时
@@ -61,6 +61,8 @@ public static void methodHookStart(String methodName, int tid, int depth, boolea
 ```
 ### 示例
 ```java
+        //android 13以上加入下面一行
+        ArtTraceHelper.useExecuteSwitchImplAsm(this);
         ArtMethodTrace.methodHookStart("com.wy.wytrace.MainActivity.onCreate", Process.myTid(),3,true);
 
 ```

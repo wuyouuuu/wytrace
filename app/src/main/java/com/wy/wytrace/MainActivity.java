@@ -8,11 +8,13 @@ import android.os.SystemClock;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.wy.lib.wytrace.ArtMethodTrace;
+import com.wy.lib.wytrace.ArtTraceHelper;
 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(newBase);
+        ArtTraceHelper.useExecuteSwitchImplAsm(this);
         ArtMethodTrace.methodHookStart("com.wy.wytrace.MainActivity.onCreate", Process.myTid(),3,true);
 
     }

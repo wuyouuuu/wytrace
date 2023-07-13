@@ -12,6 +12,10 @@ cmake_minimum_required(VERSION 3.4.1)
 #set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/src/main/libs/${ANDROID_ABI}/)
 find_package(shadowhook REQUIRED CONFIG)
 
+include_directories(
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/main/cpp/jvmti.h
+)
+
 
 
 
@@ -29,6 +33,7 @@ add_library( # Sets the name of the library.
 
 
         ${CMAKE_CURRENT_SOURCE_DIR}/src/main/cpp/art_method_trace.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/main/cpp/jvmti_agent.cpp
         )
 
 
