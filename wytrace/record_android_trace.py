@@ -578,6 +578,7 @@ def main():
     sys.exit(1)
 
   prt('Trace started. Press CTRL+C to stop', ANSI.BLACK + ANSI.BG_BLUE)
+  adb('shell','screenrecord  --time-limit',args.time, '/sdcard/screenshot.mp4',stdout=subprocess.PIPE)
   logcat = adb('logcat', '-v', 'brief', '-s', 'perfetto', '-b', 'main', '-T',
                '1')
 
@@ -623,11 +624,15 @@ def main():
   prt('Pulling into %s' % host_file, ANSI.BOLD)
   adb('pull', device_file, host_file).wait()
   adb('shell', 'rm -f ' + device_file).wait()
+  mp4_path = './screenshot.mp4'
+  adb('pull', '/sdcard/screenshot.mp4',mp4_path).wait()
+  adb('shell', 'rm -f ' + '/sdcard/screenshot.mp4').wait()
 
   if not args.no_open:
     prt('\n')
     prt('Opening the trace (%s) in the browser' % host_file)
     open_trace_in_browser(host_file)
+    webbrowser.open('file://' + os.path.abspath(mp4_path))
 
 
 def prt(msg, colors=ANSI.END):
